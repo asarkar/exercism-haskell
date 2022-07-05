@@ -2,6 +2,8 @@
 
 set -e
 
+export RUSTFLAGS="-D warnings"
+
 no_test=0
 no_lint=0
 
@@ -46,7 +48,7 @@ for m in "${manifests[@]}"; do
 	printf "Project dir: %b%s%b\n" "$green" "$name" "$no_color"
 
 	if (( no_test == 0 )); then
-		stack --work-dir . --stack-yaml "$m" test
+		stack --work-dir . --stack-yaml "$m" test --ghc-options="-Wall -Werror"
 	fi
 
 	if (( no_lint == 0 )); then
