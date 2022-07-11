@@ -2,8 +2,6 @@
 
 set -e
 
-export RUSTFLAGS="-D warnings"
-
 no_test=0
 no_lint=0
 

@@ -1,20 +1,21 @@
-name: bob
-version: 1.4.0.10
+name: hamming
+version: 2.3.0.10
 
 dependencies:
   - base
 
 library:
-  exposed-modules: Bob
+  exposed-modules: Hamming
   source-dirs: src
   ghc-options: -Wall
   # dependencies:
-  # - text
+  # - foo       # List here the packages you
+  # - bar       # want to use in your solution.
 
 tests:
   test:
     main: Tests.hs
     source-dirs: test
     dependencies:
-      - bob
+      - hamming
       - hspec

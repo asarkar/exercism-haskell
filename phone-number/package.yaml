@@ -1,20 +1,20 @@
-name: bob
-version: 1.4.0.10
+name: phone-number
+version: 1.6.1.8
 
 dependencies:
   - base
 
 library:
-  exposed-modules: Bob
+  exposed-modules: Phone
   source-dirs: src
   ghc-options: -Wall
-  # dependencies:
-  # - text
+  dependencies:
+  - megaparsec
 
 tests:
   test:
     main: Tests.hs
     source-dirs: test
     dependencies:
-      - bob
+      - phone-number
       - hspec

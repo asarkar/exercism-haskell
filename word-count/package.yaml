@@ -1,20 +1,21 @@
-name: bob
-version: 1.4.0.10
+name: word-count
+version: 1.4.0.8
 
 dependencies:
   - base
 
 library:
-  exposed-modules: Bob
+  exposed-modules: WordCount
   source-dirs: src
   ghc-options: -Wall
-  # dependencies:
-  # - text
+  dependencies:
+  - megaparsec
+  - multiset
 
 tests:
   test:
     main: Tests.hs
     source-dirs: test
     dependencies:
-      - bob
+      - word-count
       - hspec

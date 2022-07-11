@@ -4,15 +4,15 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 
-name:           sum-of-multiples
-version:        1.5.0.10
+name:           binary-search-tree
+version:        1.0.0.4
 build-type:     Simple
 
 library
   exposed-modules:
-      SumOfMultiples
+      BST
   other-modules:
-      Paths_sum_of_multiples
+      Paths_binary_search_tree
   hs-source-dirs:
       src
   ghc-options: -Wall
@@ -24,11 +24,11 @@ test-suite test
   type: exitcode-stdio-1.0
   main-is: Tests.hs
   other-modules:
-      Paths_sum_of_multiples
+      Paths_binary_search_tree
   hs-source-dirs:
       test
   build-depends:
       base
+    , binary-search-tree
     , hspec
-    , sum-of-multiples
   default-language: Haskell2010

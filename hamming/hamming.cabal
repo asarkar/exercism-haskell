@@ -4,15 +4,15 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 
-name:           sum-of-multiples
-version:        1.5.0.10
+name:           hamming
+version:        2.3.0.10
 build-type:     Simple
 
 library
   exposed-modules:
-      SumOfMultiples
+      Hamming
   other-modules:
-      Paths_sum_of_multiples
+      Paths_hamming
   hs-source-dirs:
       src
   ghc-options: -Wall
@@ -24,11 +24,11 @@ test-suite test
   type: exitcode-stdio-1.0
   main-is: Tests.hs
   other-modules:
-      Paths_sum_of_multiples
+      Paths_hamming
   hs-source-dirs:
       test
   build-depends:
       base
+    , hamming
     , hspec
-    , sum-of-multiples
   default-language: Haskell2010
