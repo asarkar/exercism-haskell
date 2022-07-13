@@ -50,7 +50,7 @@ stack --work-dir . --stack-yaml </path/to/stack.yaml> test --ta '-m "/<test_name
 * [The Haskell Tool Stack](https://docs.haskellstack.org/en/stable/GUIDE/)
 * [GHC Warnings](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/using-warnings.html)
 * [Structuring your first Haskell project with Stack](https://sakshamsharma.com/2018/03/haskell-proj-struct/)
-* [Ormolu](https://monadfix.com/ormolu)
+* [Ormolu](https://ormolu-live.tweag.io/)
 * [pointfree.io](http://pointfree.io/)
 
 ### Control Structures

@@ -13,12 +13,10 @@ number xs
 
 isValid :: String -> Bool
 isValid xs
-  | n == 10 = isValid areaCode && isValid exchangeCode && isValid subscriberNum
+  | n == 10 = isValid areaCode && isValid exchangeCode
   | n == 3 = head xs >= '2'
-  | n == 4 = True
-  | otherwise = False
+  | otherwise = True
   where
     n = length xs
     (areaCode, localNum) = splitAt 3 xs
     exchangeCode = take 3 localNum
-    subscriberNum = drop 3 localNum
