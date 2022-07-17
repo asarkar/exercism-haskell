@@ -34,13 +34,21 @@ label r = unwords [fmt z, unit]
 units :: [(Int, String)]
 -- Specify type otherwise error:
 -- Defaulting the following constraints to type 'Integer'
-units = [(1, "ohms"), (10 ^ (3 :: Int), "kiloohms"), (10 ^ (6 :: Int), "megaohms"), (10 ^ (9 :: Int), "gigaohms")]
+units =
+  [ (1, "ohms"),
+    (10 ^ (3 :: Int), "kiloohms"),
+    (10 ^ (6 :: Int), "megaohms"),
+    (10 ^ (9 :: Int), "gigaohms")
+  ]
 
 divBy :: Int -> Int -> Float
 divBy x y = fromIntegral x / fromIntegral y
 
 fmt :: Float -> String
-fmt x = if int then show y else T.printf "%.1f" x
+fmt x =
+  if int
+    then show y
+    else T.printf "%.1f" x
   where
     y = round x :: Int
     int = abs (x - fromIntegral y) < 0.1

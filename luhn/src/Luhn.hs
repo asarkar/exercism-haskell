@@ -12,10 +12,8 @@ isValid n
     zs = [convert x y | (x, y) <- ys]
 
 convert :: Char -> Int -> Int
-convert c mul =
-  do
-    let n = C.digitToInt c
-    case () of
-      _
-        | mul == 2 && n > 4 -> n * mul - 9
-        | otherwise -> n * mul
+convert c mul
+  | mul == 2 && n > 4 = n * mul - 9
+  | otherwise = n * mul
+  where
+    n = C.digitToInt c

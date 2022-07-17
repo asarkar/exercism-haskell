@@ -14,7 +14,7 @@ encode xs = case ys of
     ys = normalize xs
     -- Lazy; doesn't evaluate the following if 'ys' is empty
     -- https://stackoverflow.com/a/72887963/839733
-    col = size $ length ys
+    col = (size . length) ys
     rect = S.chunksOf col ys
     cipher = L.transpose $ map (padR col) rect
 

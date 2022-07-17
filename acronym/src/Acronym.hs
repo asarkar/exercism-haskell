@@ -8,10 +8,9 @@ import qualified Data.Char as C
 3. If a character is upper case and not preceded by another upper case character, take it.
 -}
 abbreviate :: String -> String
-abbreviate xs = [C.toUpper (this i) | i <- [0 .. n], first i || upper i]
+abbreviate [] = []
+abbreviate xs = [C.toUpper $ snd x | x <- ys, isFirst x || isUpper x]
   where
-    n = length xs - 1
-    prev i = xs !! (i - 1)
-    this i = xs !! i
-    first i = C.isAlpha (this i) && (i == 0 || C.isSpace (prev i) || prev i == '-')
-    upper i = C.isUpper (this i) && (not . C.isUpper) (prev i)
+    ys = (' ', head xs) : zip xs (tail xs)
+    isFirst (prev, this) = C.isAlpha this && (C.isSpace prev || prev == '-')
+    isUpper (prev, this) = C.isUpper this && (not . C.isUpper) prev

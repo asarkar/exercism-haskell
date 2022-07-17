@@ -63,12 +63,11 @@ invalidScore f = case over of
 -- Determine if game is over, and if yes, maximum
 -- number of throws that are allowed
 isGameOver :: [[Int]] -> (Bool, Int)
-isGameOver f = case () of
-  _
-    | n >= 10 && completeInTenth -> (True, 20)
-    | n >= 11 && completeInEleventh -> (True, 21)
-    | n >= 12 -> (True, 21)
-    | otherwise -> (False, numThrows)
+isGameOver f
+  | n >= 10 && completeInTenth = (True, 20)
+  | n >= 11 && completeInEleventh = (True, 21)
+  | n >= 12 = (True, 21)
+  | otherwise = (False, numThrows)
   where
     n = length f
     tenthFrame = f !! 9
@@ -83,7 +82,6 @@ isGameOver f = case () of
 frames :: [Int] -> [[Int]]
 frames [] = []
 frames [x] = [[x]]
-frames (x : xs) = case () of
-  _
-    | x == 10 -> [x] : frames xs
-    | otherwise -> [x, head xs] : frames (tail xs)
+frames (x : xs)
+  | x == 10 = [x] : frames xs
+  | otherwise = [x, head xs] : frames (tail xs)
