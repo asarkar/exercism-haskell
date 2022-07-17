@@ -1,4 +1,4 @@
-# exercism-rust
+# exercism-haskell
 My solutions for [Exercism Haskell Track](https://exercism.org/tracks/haskell).
 Feel free to open issues for questions, comments, or suggestions.
 
@@ -78,6 +78,11 @@ stack --work-dir . --stack-yaml </path/to/stack.yaml> test --ta '-m "/<test_name
 * [List comprehension](https://wiki.haskell.org/List_comprehension)
 * [Serokell Blog](https://serokell.io/blog)
 * [DevTut](https://devtut.github.io/haskell/)
+* [Random Hacks](http://www.randomhacks.net/)
+* [Roman Cheplyaka Blog](https://ro-che.info/articles/haskell)
+* [FPComplete](https://www.fpcomplete.com/haskell/learn/)
+* [Artyom's tech notes](https://tek.brick.do/)
+* [Monadfix blog](https://blog.monadfix.com/)
 
 ### Monad
 

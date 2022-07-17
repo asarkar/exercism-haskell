@@ -1,5 +1,7 @@
 module SecretHandshake (handshake) where
 
+import qualified Data.List as L
+
 handshake :: Int -> [String]
 handshake n
   | n >= 16 = reverse (hs (n - 16))
@@ -7,8 +9,11 @@ handshake n
 
 hs :: Int -> [String]
 hs n
-  | n >= 8 = hs (n - 8) ++ ["jump"]
-  | n >= 4 = hs (n - 4) ++ ["close your eyes"]
-  | n >= 2 = hs (n - 2) ++ ["double blink"]
-  | n >= 1 = hs (n - 1) ++ ["wink"]
-  | otherwise = []
+  | n == 0 = []
+  | otherwise = hs (n - a) ++ [b]
+  where
+    xs = [(8, "jump"), (4, "close your eyes"), (2, "double blink"), (1, "wink")]
+    x = L.find (\y -> n >= fst y) xs
+    (a, b) = case x of
+      Just y -> y
+      _ -> (0, "")
