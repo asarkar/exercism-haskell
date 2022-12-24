@@ -3,12 +3,12 @@
 
 import Data.Foldable     (for_)
 import Test.Hspec        (Spec, describe, it, shouldBe)
-import Test.Hspec.Runner (configFastFail, defaultConfig, hspecWith)
+import Test.Hspec.Runner (configFailFast, defaultConfig, hspecWith)
 
 import WordProblem (answer)
 
 main :: IO ()
-main = hspecWith defaultConfig {configFastFail = True} specs
+main = hspecWith defaultConfig {configFailFast = True} specs
 
 specs :: Spec
 specs = describe "answer" $ for_ cases test
@@ -117,5 +117,3 @@ cases = [ Case { description = "just a number"
                , expected    = Nothing
                }
         ]
-
--- 67cc2d6b240854e7d997a92c0f1819c2fe72a1e0

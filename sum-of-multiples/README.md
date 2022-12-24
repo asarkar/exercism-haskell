@@ -1,6 +1,6 @@
-# Sum Of Multiples
+# Sum of Multiples
 
-Welcome to Sum Of Multiples on Exercism's Haskell Track.
+Welcome to Sum of Multiples on Exercism's Haskell Track.
 If you need help running the tests or submitting your code, check out `HELP.md`.
 
 ## Instructions
@@ -35,4 +35,4 @@ The sum of these multiples is 78.
 
 ### Based on
 
-A variation on Problem 1 at Project Euler - http://projecteuler.net/problem=1
+A variation on Problem 1 at Project Euler - https://projecteuler.net/problem=1

@@ -3,12 +3,12 @@
 
 import Data.Foldable     (for_)
 import Test.Hspec        (Spec, describe, it, shouldBe)
-import Test.Hspec.Runner (configFastFail, defaultConfig, hspecWith)
+import Test.Hspec.Runner (configFailFast, defaultConfig, hspecWith)
 
 import Prime (nth)
 
 main :: IO ()
-main = hspecWith defaultConfig {configFastFail = True} specs
+main = hspecWith defaultConfig {configFailFast = True} specs
 
 specs :: Spec
 specs = describe "nth" $ for_ cases test
@@ -45,5 +45,3 @@ cases = [ Case { description = "first prime"
                , expected    = Nothing
                }
         ]
-
--- cca74be6d72414292edbcde8268ff507b1d65ae6

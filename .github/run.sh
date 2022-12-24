@@ -29,6 +29,17 @@ while (( $# > 0 )); do
    esac
 done
 
+# if [[ "$OSTYPE" == "darwin"* && -x "$(command -v brew)" ]]; then
+# 	llvm_loc=$(dirname "$(brew --prefix llvm)")
+# 	llvm_loc=$(find "$llvm_loc" -name "llvm*")
+# 	if [[ -d $llvm_loc ]]; then
+# 		# Couldn't figure out LLVM version - https://github.com/haskell/vscode-haskell/issues/667
+# 		export PATH="$llvm_loc/bin:$PATH"
+# 	fi
+# 	# 'ffitarget_arm64.h' file not found - https://gitlab.haskell.org/ghc/ghc/-/issues/20592
+# 	export C_INCLUDE_PATH="$(xcrun --show-sdk-path)/usr/include/ffi"
+# fi
+
 
 manifests=()
 if [[ -z "$1" ]]; then
@@ -45,19 +56,8 @@ for m in "${manifests[@]}"; do
 
 	printf "Project dir: %b%s%b\n" "$green" "$name" "$no_color"
 
-	if [[ "$OSTYPE" == "darwin"* && -x "$(command -v brew)" ]]; then
-		llvm_loc=$(dirname "$(brew --prefix llvm)")
-		llvm_loc=$(find "$llvm_loc" -name "llvm*")
-		if [[ -d $llvm_loc ]]; then
-			# Couldn't figure out LLVM version - https://github.com/haskell/vscode-haskell/issues/667
-			export PATH="$llvm_loc/bin:$PATH"
-		fi
-		# 'ffitarget_arm64.h' file not found - https://gitlab.haskell.org/ghc/ghc/-/issues/20592
-		export C_INCLUDE_PATH="$(xcrun --show-sdk-path)/usr/include/ffi"
-	fi
-
 	if (( no_test == 0 )); then
-		stack --work-dir . --stack-yaml "$m" test --ghc-options="-Wall -Werror"
+		stack --resolver lts --work-dir . --stack-yaml "$m" test --ghc-options="-Wall -Werror"
 	fi
 
 	if (( no_lint == 0 )); then

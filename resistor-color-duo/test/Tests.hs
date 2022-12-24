@@ -3,13 +3,13 @@
 
 import Data.Foldable              (for_)
 import Test.Hspec                 (Spec, describe, it, shouldBe)
-import Test.Hspec.Runner          (configFastFail, defaultConfig, hspecWith)
+import Test.Hspec.Runner          (configFailFast, defaultConfig, hspecWith)
 import Test.QuickCheck            (Gen, elements, forAll)
 
 import ResistorColors (Color (..), value)
 
 main :: IO ()
-main = hspecWith defaultConfig {configFastFail = True} specs
+main = hspecWith defaultConfig {configFailFast = True} specs
 
 specs :: Spec
 specs = describe "value" $ do
@@ -55,5 +55,3 @@ cases = [ Case { description = "Brown and black"
         -- since they are not representable as (Color, Color). They
         -- are addressed in the exercise resistor-color-trio.
         ]
-
--- c193c935fe902d4004778872de9e4e61108c271a

@@ -93,4 +93,4 @@ Sum the digits
 
 ### Based on
 
-The Luhn Algorithm on Wikipedia - http://en.wikipedia.org/wiki/Luhn_algorithm
+The Luhn Algorithm on Wikipedia - https://en.wikipedia.org/wiki/Luhn_algorithm

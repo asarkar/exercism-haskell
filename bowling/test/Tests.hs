@@ -2,12 +2,12 @@
 
 import Data.Foldable     (for_)
 import Test.Hspec        (Spec, describe, it, shouldBe)
-import Test.Hspec.Runner (configFastFail, defaultConfig, hspecWith)
+import Test.Hspec.Runner (configFailFast, defaultConfig, hspecWith)
 
 import Bowling (score, BowlingError(..))
 
 main :: IO ()
-main = hspecWith defaultConfig {configFastFail = True} specs
+main = hspecWith defaultConfig {configFailFast = True} specs
 
 specs :: Spec
 specs = describe "roll, score" $ for_ cases test
@@ -145,6 +145,3 @@ cases = [ Case { description = "should be able to score a game with all zeros"
                , expected    = Left $ InvalidRoll 21 2
                }
         ]
-
-
--- dc82091047d356d19bebe8fd8b2f7c3f89118010

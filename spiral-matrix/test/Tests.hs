@@ -3,10 +3,10 @@
 import Spiral (spiral)
 
 import Test.Hspec        (Spec, describe, it, shouldBe)
-import Test.Hspec.Runner (configFastFail, defaultConfig, hspecWith)
+import Test.Hspec.Runner (configFailFast, defaultConfig, hspecWith)
 
 main :: IO ()
-main = hspecWith defaultConfig {configFastFail = True} specs
+main = hspecWith defaultConfig {configFailFast = True} specs
 
 specs :: Spec
 specs = describe "spiral" $ do
@@ -38,5 +38,3 @@ specs = describe "spiral" $ do
                         , [15, 24, 25, 20, 7]
                         , [14, 23, 22, 21, 8]
                         , [13, 12, 11, 10, 9] ]
-
--- 1518a82c7f44846a470e9066262de377c6d8c95a

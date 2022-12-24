@@ -4,12 +4,12 @@
 import Data.Foldable     (for_)
 import Data.String       (fromString)
 import Test.Hspec        (Spec, describe, it, shouldBe)
-import Test.Hspec.Runner (configFastFail, defaultConfig, hspecWith)
+import Test.Hspec.Runner (configFailFast, defaultConfig, hspecWith)
 
 import Acronym (abbreviate)
 
 main :: IO ()
-main = hspecWith defaultConfig {configFastFail = True} specs
+main = hspecWith defaultConfig {configFailFast = True} specs
 
 specs :: Spec
 specs = describe "abbreviate" $ for_ cases test
@@ -67,5 +67,3 @@ cases = [ Case { description = "basic"
                , expected    = "TRNT"
                }
         ]
-
--- ad42f2da40183e017f9c52fd00efe33c6bfe7037

@@ -66,4 +66,4 @@ that makes sense, so you are encouraged to find the one you think is the best.
 
 ### Based on
 
-A subset of the Problem 8 at Project Euler - http://projecteuler.net/problem=8
+A subset of the Problem 8 at Project Euler - https://projecteuler.net/problem=8

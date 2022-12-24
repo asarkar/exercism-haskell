@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -fno-warn-incomplete-uni-patterns #-}
+
 module PerfectNumbers (classify, Classification (..)) where
 
 data Classification = Deficient | Perfect | Abundant deriving (Eq, Show)

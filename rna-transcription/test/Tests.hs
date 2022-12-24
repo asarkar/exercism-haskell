@@ -2,12 +2,12 @@
 
 import Data.Foldable     (for_)
 import Test.Hspec        (Spec, describe, it, shouldBe)
-import Test.Hspec.Runner (configFastFail, defaultConfig, hspecWith)
+import Test.Hspec.Runner (configFailFast, defaultConfig, hspecWith)
 
 import DNA (toRNA)
 
 main :: IO ()
-main = hspecWith defaultConfig {configFastFail = True} specs
+main = hspecWith defaultConfig {configFailFast = True} specs
 
 specs :: Spec
 specs = describe "toRNA" $ for_ cases test
@@ -57,5 +57,3 @@ cases = [ Case { description = "Empty RNA sequence"
                , expected    = Left 'X'
                }
         ]
-
--- b02fedbb302892cb17dfa608df335b530ae2bc92

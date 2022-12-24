@@ -2,12 +2,12 @@
 
 import Data.Foldable     (for_)
 import Test.Hspec        (Spec, describe, it, shouldBe)
-import Test.Hspec.Runner (configFastFail, defaultConfig, hspecWith)
+import Test.Hspec.Runner (configFailFast, defaultConfig, hspecWith)
 
 import RunLength (encode, decode)
 
 main :: IO ()
-main = hspecWith defaultConfig {configFastFail = True} specs
+main = hspecWith defaultConfig {configFailFast = True} specs
 
 specs :: Spec
 specs = do
@@ -85,5 +85,3 @@ bothCases =
            , expected    = "zzz ZZ  zZ"
            }
     ]
-
--- e2df7b62b47521f73c3f75f4326723758caf0327

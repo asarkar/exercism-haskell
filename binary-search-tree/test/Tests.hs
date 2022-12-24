@@ -1,5 +1,5 @@
 import Test.Hspec        (Spec, it, shouldBe)
-import Test.Hspec.Runner (configFastFail, defaultConfig, hspecWith)
+import Test.Hspec.Runner (configFailFast, defaultConfig, hspecWith)
 
 import BST
   ( bstLeft
@@ -13,7 +13,7 @@ import BST
   )
 
 main :: IO ()
-main = hspecWith defaultConfig {configFastFail = True} specs
+main = hspecWith defaultConfig {configFailFast = True} specs
 
 specs :: Spec
 specs = do
@@ -76,5 +76,3 @@ specs = do
 
     it "iterating over complex tree" $
       toList (fromList [int4, 2, 1, 3, 6, 7, 5]) `shouldBe` [1..7]
-
--- a2630b9bd87e31fa939d9df48f67688bb41b0882

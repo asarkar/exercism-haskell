@@ -3,12 +3,12 @@
 
 import Data.Foldable     (for_)
 import Test.Hspec        (Spec, describe, it, shouldBe)
-import Test.Hspec.Runner (configFastFail, defaultConfig, hspecWith)
+import Test.Hspec.Runner (configFailFast, defaultConfig, hspecWith)
 
 import SumOfMultiples (sumOfMultiples)
 
 main :: IO ()
-main = hspecWith defaultConfig {configFastFail = True} specs
+main = hspecWith defaultConfig {configFailFast = True} specs
 
 specs :: Spec
 specs = describe "sumOfMultiples" $ for_ cases test
@@ -108,5 +108,3 @@ cases = [ Case { factors  = [3, 5]
                , description = "solutions using include-exclude must extend to cardinality greater than 3"
                }
         ]
-
--- c9463afdd07f90f24174b928f87618531a44571f

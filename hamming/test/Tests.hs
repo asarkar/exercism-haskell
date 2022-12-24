@@ -3,12 +3,12 @@
 
 import Data.Foldable     (for_)
 import Test.Hspec        (Spec, describe, it, shouldBe)
-import Test.Hspec.Runner (configFastFail, defaultConfig, hspecWith)
+import Test.Hspec.Runner (configFailFast, defaultConfig, hspecWith)
 
 import Hamming (distance)
 
 main :: IO ()
-main = hspecWith defaultConfig {configFastFail = True} specs
+main = hspecWith defaultConfig {configFailFast = True} specs
 
 specs :: Spec
 specs = describe "distance" $ for_ cases test
@@ -72,5 +72,3 @@ cases = [ Case { description = "empty strands"
                , expected    = Nothing
                }
         ]
-
--- d8b2f2dce3d40fb75587ff1eb4bd2846c0076c33

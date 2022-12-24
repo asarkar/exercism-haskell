@@ -1,10 +1,10 @@
 import Test.Hspec        (Spec, it, shouldBe)
-import Test.Hspec.Runner (configFastFail, defaultConfig, hspecWith)
+import Test.Hspec.Runner (configFailFast, defaultConfig, hspecWith)
 
 import SecretHandshake (handshake)
 
 main :: IO ()
-main = hspecWith defaultConfig {configFastFail = True} specs
+main = hspecWith defaultConfig {configFailFast = True} specs
 
 specs :: Spec
 specs = do
@@ -41,5 +41,3 @@ specs = do
 
     it "do nothing for zero" $
       handshake (0 :: Int) `shouldBe` []
-
--- 4d64eae46b29e9b5c5ee50c4eadd4cb8deaa70ff

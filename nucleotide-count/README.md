@@ -50,4 +50,4 @@ For example:
 
 ### Based on
 
-The Calculating DNA Nucleotides_problem at Rosalind - http://rosalind.info/problems/dna/
+The Calculating DNA Nucleotides_problem at Rosalind - https://rosalind.info/problems/dna/

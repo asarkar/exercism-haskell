@@ -1,12 +1,12 @@
 import Test.Hspec        (Spec, it, shouldBe)
-import Test.Hspec.Runner (configFastFail, defaultConfig, hspecWith)
+import Test.Hspec.Runner (configFailFast, defaultConfig, hspecWith)
 
 import Data.List (isPrefixOf)
 
 import Strain (discard, keep)
 
 main :: IO ()
-main = hspecWith defaultConfig {configFastFail = True} specs
+main = hspecWith defaultConfig {configFailFast = True} specs
 
 specs :: Spec
 specs = do
@@ -64,5 +64,3 @@ specs = do
         ("yes" : error "discard should be lazier - don't look at list elements you don't need!")
         `shouldBe`
         ["yes"]
-
--- b803e2af95881f2b702a8a1869fa5281b69d3dd7

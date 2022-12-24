@@ -46,4 +46,4 @@ exception vs returning a special value) may differ between languages.
 
 ### Based on
 
-The Calculating Point Mutations problem at Rosalind - http://rosalind.info/problems/hamm/
+The Calculating Point Mutations problem at Rosalind - https://rosalind.info/problems/hamm/

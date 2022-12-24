@@ -4,13 +4,13 @@
 
 import Data.Foldable     (for_)
 import Test.Hspec        (Spec, describe, it, shouldBe)
-import Test.Hspec.Runner (configFastFail, defaultConfig, hspecWith)
+import Test.Hspec.Runner (configFailFast, defaultConfig, hspecWith)
 import Data.String       (fromString)
 
 import ResistorColors (Color(..), Resistor(..), label, ohms)
 
 main :: IO ()
-main = hspecWith defaultConfig {configFastFail = True} specs
+main = hspecWith defaultConfig {configFailFast = True} specs
 
 specs :: Spec
 specs = do
@@ -85,7 +85,7 @@ cases = [ Case { input         = Resistor (Black, Black, Black)
                , expectedLabel = "36 gigaohms"
                , expectedOhms  = 36e9
                }
-        
+        {-
            -- The following tests are commented out to decrease the
            -- complexity of the exercise. Students may choose freely
            -- to include them or not.
@@ -101,7 +101,5 @@ cases = [ Case { input         = Resistor (Black, Black, Black)
                , expectedLabel = "5.6 gigaohms"
                , expectedOhms  = 5.6e9
                }
-        
+        -}
         ]
-
--- a9ca831fade0507365a75ea2a3819dca8b38e53b
