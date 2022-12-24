@@ -4,6 +4,8 @@ Feel free to open issues for questions, comments, or suggestions.
 
 [![](https://github.com/asarkar/exercism-haskell/workflows/CI/badge.svg)](https://github.com/asarkar/exercism-haskell/actions)
 
+For detailed explanations of solutions, see [exercism-rust](https://github.com/asarkar/exercism-rust).
+
 ## GHCi Commands
 To start with a package loaded
 ```
@@ -83,6 +85,9 @@ stack --work-dir . --stack-yaml </path/to/stack.yaml> test --ta '-m "/<test_name
 * [FPComplete](https://www.fpcomplete.com/haskell/learn/)
 * [Artyom's tech notes](https://tek.brick.do/)
 * [Monadfix blog](https://blog.monadfix.com/)
+* [PatternSynonyms](https://riptutorial.com/haskell/example/16064/patternsynonyms)
+* [View Patterns in GHC](https://dlicata.wescreates.wesleyan.edu/pubs/lpj07views/lpj07views-anglohaskell.pdf)
+* [Lists vs Vectors vs Sequences](https://stackoverflow.com/a/9613203/839733)
 
 ### Monad
 
