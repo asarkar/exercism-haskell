@@ -4,6 +4,8 @@ set -e
 
 no_test=0
 no_lint=0
+stack_opts='--resolver lts --work-dir .'
+ghc_opts='-Wall -Werror'
 
 while (( $# > 0 )); do
    case "$1" in
@@ -23,23 +25,15 @@ while (( $# > 0 )); do
 			no_lint=1
 			shift
 			;;
+		--profile)
+			stack_opts="--profile --force-dirty $stack_opts"
+			shift
+			;;
 		*)
 			break
 	      ;;
    esac
 done
-
-# if [[ "$OSTYPE" == "darwin"* && -x "$(command -v brew)" ]]; then
-# 	llvm_loc=$(dirname "$(brew --prefix llvm)")
-# 	llvm_loc=$(find "$llvm_loc" -name "llvm*")
-# 	if [[ -d $llvm_loc ]]; then
-# 		# Couldn't figure out LLVM version - https://github.com/haskell/vscode-haskell/issues/667
-# 		export PATH="$llvm_loc/bin:$PATH"
-# 	fi
-# 	# 'ffitarget_arm64.h' file not found - https://gitlab.haskell.org/ghc/ghc/-/issues/20592
-# 	export C_INCLUDE_PATH="$(xcrun --show-sdk-path)/usr/include/ffi"
-# fi
-
 
 manifests=()
 if [[ -z "$1" ]]; then
@@ -57,7 +51,8 @@ for m in "${manifests[@]}"; do
 	printf "Project dir: %b%s%b\n" "$green" "$name" "$no_color"
 
 	if (( no_test == 0 )); then
-		stack --resolver lts --work-dir . --stack-yaml "$m" test --ghc-options="-Wall -Werror"
+		# profiling https://stackoverflow.com/a/40922201/839733
+		stack $stack_opts --stack-yaml "$m" test --ghc-options="$ghc_opts"
 	fi
 
 	if (( no_lint == 0 )); then

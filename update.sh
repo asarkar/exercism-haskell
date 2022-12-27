@@ -2,11 +2,6 @@
 
 set -e
 
-if ! [ -x "$(command -v jq)" ]; then
-	printf "jq is not installed\n"
-	exit 1
-fi
-
 manifests=()
 if [[ -z "$1" ]]; then
 	manifests=(**/stack.yaml)
@@ -25,12 +20,8 @@ for m in "${manifests[@]}"; do
 
 	printf "Project dir: %b%s%b\n" "$green" "$name" "$no_color"
 
-	metadata="$name/.exercism/metadata.json"
-	track="$(jq -r '.track' < "$metadata")"
-	exercise="$(jq -r '.exercise' < "$metadata")"
-
-	cp -R "$name" "$dest"
-	exercism download -t "$track" -e "$exercise" -F
+	cp -Rf "$name" "$dest"
+	exercism download -t haskell -e "$name" -F
 	cp -Rf "$dest/$name/src" "$name"
 done
 
