@@ -8,4 +8,3 @@ distance xs ys
   where
     m = length xs
     n = length ys
-  

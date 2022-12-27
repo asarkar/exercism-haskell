@@ -1,6 +1,6 @@
 module Spiral (spiral) where
 
-import           Data.List (transpose)
+import Data.List (transpose)
 
 -- spiral is the first row plus a smaller spiral rotated 90 deg
 spiral' :: Int -> Int -> Int -> [[Int]]
@@ -8,9 +8,11 @@ spiral' 0 _ _ = [[]]
 spiral' h w s = [s .. s + w - 1] : rot90 (spiral' w (h - 1) (s + w))
   where
     rot90 = map reverse . transpose
+
 spiral :: Int -> [[Int]]
-spiral 0    = []
+spiral 0 = []
 spiral size = spiral' size size 1
+
 --
 -- How it works
 -- spiral' 3 3 1

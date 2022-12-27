@@ -1,10 +1,10 @@
 module WordCount (wordCount) where
-  
-import qualified Data.Char as C
-import qualified Data.MultiSet as MS
-import qualified Data.Either as E
+
 import qualified Control.Applicative as A
 import Control.Monad (void)
+import qualified Data.Char as C
+import qualified Data.Either as E
+import qualified Data.MultiSet as MS
 import Data.Void (Void)
 import qualified Text.Megaparsec as M
 import qualified Text.Megaparsec.Char as MC

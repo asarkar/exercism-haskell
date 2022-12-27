@@ -1,7 +1,7 @@
 module ProteinTranslation (proteins) where
 
-import qualified Data.Map as M
 import qualified Data.List as L
+import qualified Data.Map as M
 
 proteins :: String -> Maybe [String]
 proteins xs = Just $ takeWhile (/= "STOP") ys

@@ -8,7 +8,6 @@ tempToC temp = (f - 32) / 1.8
   where
     f = fromIntegral temp :: Float
 
-
 {- Implement the function `tempToF` to convert
 `  Celsius to Fahrenheit                    -}
 

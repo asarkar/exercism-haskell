@@ -13,7 +13,7 @@ type Trio = (Maybe Integer, String, String)
 Megaparsec solutions:
 https://exercism.org/tracks/haskell/exercises/wordy/solutions/zhenengxie
 https://exercism.org/tracks/haskell/exercises/wordy/solutions/insideoutclub
-($>) :: Functor f => f a -> b -> f b 
+($>) :: Functor f => f a -> b -> f b
 Replace all locations in the Functor with the same value.
 (*>) :: Applicative f => f a -> f b -> f b
 Sequence actions, discarding the value of the first argument.

@@ -1,4 +1,5 @@
 module Bob (responseFor) where
+
 import qualified Data.Char as C
 
 countMatching :: (Char -> Bool) -> String -> Int

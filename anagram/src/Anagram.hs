@@ -1,7 +1,7 @@
 module Anagram (anagramsFor) where
 
-import qualified Data.List as L
 import qualified Data.Char as C
+import qualified Data.List as L
 
 anagramsFor :: String -> [String] -> [String]
 anagramsFor xs xss = [x | x <- xss, let s = toUpper x, s /= ys && freq s == zs]

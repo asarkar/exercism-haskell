@@ -33,9 +33,9 @@ classify n
   | n <= 0 = Nothing
   | n <= 3 = Just Deficient
   | otherwise = Just $ case compare pdt3 n of
-    LT -> Deficient
-    GT -> Abundant
-    _ -> Perfect
+      LT -> Deficient
+      GT -> Abundant
+      _ -> Perfect
   where
     -- There is no prime factor greater than sqrt n
     rt = iSqrt n
@@ -47,7 +47,7 @@ classify n
     This condition is to handle the case when remaining
     n is a prime number greater than 2.
 
-    For example, when original n = 6, sqrt = 2, and 
+    For example, when original n = 6, sqrt = 2, and
     remaining n = 3.
     -}
     pdt2 = pdt1 * (if y > 2 then 1 + y else 1)

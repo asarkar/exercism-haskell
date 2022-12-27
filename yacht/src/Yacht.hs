@@ -1,8 +1,8 @@
 module Yacht (yacht, Category (..)) where
 
+import qualified Control.Arrow as A
 import qualified Data.List as L
 import qualified Data.Map as M
-import qualified Control.Arrow as A
 
 data Category
   = Ones

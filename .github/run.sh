@@ -42,6 +42,11 @@ else
 	manifests+=("$1/stack.yaml")
 fi
 
+ormolu_mode="check"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	ormolu_mode="inplace"
+fi
+
 green='\033[1;32m'
 no_color='\033[0m'
 for m in "${manifests[@]}"; do
@@ -56,6 +61,16 @@ for m in "${manifests[@]}"; do
 	fi
 
 	if (( no_lint == 0 )); then
-		hlint "$name"
+		if [[ -x "$(command -v hlint)" ]]; then
+			hlint "$name"
+		else
+			printf "hlint not found"
+		fi
+		
+		if [[ -x "$(command -v ormolu)" ]]; then
+			ormolu -m "$ormolu_mode" $(find "$name/src" -name '*.hs')
+		else
+			printf "ormolu not found"
+		fi
 	fi
 done

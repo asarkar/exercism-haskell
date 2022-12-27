@@ -1,4 +1,4 @@
-module DNA (nucleotideCounts, Nucleotide(..)) where
+module DNA (nucleotideCounts, Nucleotide (..)) where
 
 import Data.Map (Map)
 import qualified Data.Map as M
@@ -13,5 +13,4 @@ nucleotideCounts [x]
   | x == 'G' = Right (M.singleton G 1)
   | x == 'T' = Right (M.singleton T 1)
   | otherwise = Left "error"
-nucleotideCounts (x:xs) = M.unionWith (+) <$> nucleotideCounts [x] <*> nucleotideCounts xs
-
+nucleotideCounts (x : xs) = M.unionWith (+) <$> nucleotideCounts [x] <*> nucleotideCounts xs
