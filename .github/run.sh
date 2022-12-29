@@ -62,7 +62,7 @@ for m in "${manifests[@]}"; do
 
 	if (( no_lint == 0 )); then
 		if [[ -x "$(command -v hlint)" ]]; then
-			hlint "$name"
+			hlint "$name/src"
 		else
 			printf "hlint not found"
 		fi
