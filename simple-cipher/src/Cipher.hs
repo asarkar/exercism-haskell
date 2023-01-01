@@ -13,7 +13,7 @@ caesarEncode key text = xcode key text (+)
 xcode :: String -> String -> (Int -> Int -> Int) -> String
 xcode k s f = zipWith go key s
   where
-    key = take (length s) $ cycle k
+    key = cycle k
     ixA = C.ord 'a'
     toI x = C.ord x - ixA
     go x y =

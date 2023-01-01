@@ -30,22 +30,29 @@ GHCi> :quit
 
 
 ## Running tests
+
 ```
-stack --work-dir . --stack-yaml </path/to/stack.yaml> test
+stack test
 ```
 
 To run all matching tests:
 ```
-stack --work-dir . --stack-yaml </path/to/stack.yaml> test --ta '-m <some_word>'
+stack test --ta '-m <some_word>'
 ```
 
 To run a single test:
 ```
-stack --work-dir . --stack-yaml </path/to/stack.yaml> test --ta '-m "/<test_name>/"'
+stack test --ta '-m "/<test_name>/"'
 ```
 
+To view package list:
+```
+stack ls dependencies
+```
 
 ## References
+
+* https://www.haskell.org/documentation/
 
 ### Tools
 
@@ -107,6 +114,12 @@ stack --work-dir . --stack-yaml </path/to/stack.yaml> test --ta '-m "/<test_name
 * [Megaparsec basics](https://funprog.srid.ca/haskell/megaparsec-basics.html)
 * [Megaparsec](https://blog.josephmorag.com/posts/mcc1/#headline-4)
 * [Pragmatic Haskell for Beginners, Lecture 1](https://begriffs.com/posts/2016-05-14-pragmatic-haskell-1.html)
+
+### Date/Time
+
+* [A Cheatsheet To The Time Library](https://williamyaoh.com/posts/2019-09-16-time-cheatsheet.html)
+* [Quick guide to basic Date/Time operations in Haskell](https://www.bitestring.com/posts/2021-07-10-haskell-datatime-basics.html)
+* [A Haskell Time Library Tutorial](https://two-wrongs.com/haskell-time-library-tutorial.html)
 
 
 ### Haskell Projects/Challenges/Puzzles
