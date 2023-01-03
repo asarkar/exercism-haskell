@@ -95,6 +95,8 @@ stack ls dependencies
 * [PatternSynonyms](https://riptutorial.com/haskell/example/16064/patternsynonyms)
 * [View Patterns in GHC](https://dlicata.wescreates.wesleyan.edu/pubs/lpj07views/lpj07views-anglohaskell.pdf)
 * [Lists vs Vectors vs Sequences](https://stackoverflow.com/a/9613203/839733)
+* [Donnacha Oisin Kidney](https://doisinkidney.com/)
+* [Carlo Hamalainen](https://carlo-hamalainen.net/)
 
 ### Monad
 
@@ -102,6 +104,9 @@ stack ls dependencies
 * [The State Monad](https://acm.wustl.edu/functional/state-monad.php)
 * [State Monad](https://mmhaskell.com/monads/state)
 * [State Monad Comes To Help Sequential Pattern Matching](https://kowainik.github.io/posts/2018-11-18-state-pattern-matching)
+* [Note to self: reader monad transformer](https://carlo-hamalainen.net/2014/03/05/note-to-self-reader-monad-transformer/)
+* [A Simple Reader Monad Example](https://blog.ssanj.net/posts/2014-09-23-A-Simple-Reader-Monad-Example.html)
+* [ReaderT WriterT Monad Transformer Stack in Haskell](https://blog.ssanj.net/posts/2018-01-12-stacking-the-readert-writert-monad-transformer-stack-in-haskell.html)
 
 ### Megaparsec
 

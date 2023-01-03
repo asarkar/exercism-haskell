@@ -25,14 +25,14 @@ nth' n x composites
   -- Prime
   | M.notMember x composites =
       -- Insert square of the prime
-      let c' = M.insertWith (++) (x * x) [x] composites
-          y = nth' (n - 1) (x + 1) c'
+      let c = M.insertWith (++) (x * x) [x] composites
+          y = nth' (n - 1) (x + 1) c
        in (if n == 0 then x else y)
   -- Composite
   | otherwise =
       -- Delete the composite and get its prime factors
-      let (Just primes, c') = M.updateLookupWithKey (\_ _ -> Nothing) x composites
+      let (Just primes, c) = M.updateLookupWithKey (\_ _ -> Nothing) x composites
           -- Insert multiples of the prime factors
-          ins m y = M.insertWith (++) (x + y) [y] m
-          c'' = foldl ins c' primes
-       in nth' n (x + 1) c''
+          ins y = M.insertWith (++) (x + y) [y]
+          c' = foldl (flip ins) c primes
+       in nth' n (x + 1) c'
