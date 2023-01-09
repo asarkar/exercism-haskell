@@ -76,6 +76,7 @@ stack ls dependencies
 
 ### General
 
+* [graninas/software-design-in-haskell](https://github.com/graninas/software-design-in-haskell)
 * [Haskell Cheat Sheet](http://cheatsheet.codeslower.com/CheatSheet.pdf)
 * [4 Steps to a Better Imports List in Haskell](https://hackernoon.com/4-steps-to-a-better-imports-list-in-haskell-43a3d868273c)
 * [Functional Programming in Haskell](https://www.youtube.com/playlist?list=PLF1Z-APd9zK7usPMx3LGMZEHrECUGodd3)
