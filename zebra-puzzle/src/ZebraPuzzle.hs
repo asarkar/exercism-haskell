@@ -69,8 +69,11 @@ answers = do
   same resident Japanese smoke Parliaments -- 14
   return $ zip3 resident drink pet
   where
+    -- index of x in xs == index of y in ys
     same xs x ys y = M.guard $ (x, y) `L.elem` zip xs ys
+    -- index of x in xs - index of y in ys == -1
     leftOf xs x ys = same xs x (tail ys)
+    -- index of x in xs - index of y in ys == |1|
     nextTo xs x ys y =
       leftOf xs x ys y
         `M.mplus` leftOf ys y xs x
