@@ -26,7 +26,7 @@ data PokerHand
 
 bestHands :: [String] -> Maybe [String]
 bestHands xs
-  | any Mb.isNothing pokerHands = Nothing
+  | length pokerHands /= length hands = Nothing
   | otherwise = Just $ findWinners sortedHands
   where
     pokerHands = map pokerHand xs
@@ -38,50 +38,48 @@ bestHands xs
     findWinners = map ((xs !!) . fst) . filter findBest
 
 pokerHand :: String -> Maybe PokerHand
-pokerHand hand = case rankMap hand of
-  Nothing -> Nothing
-  Just ranks -> Just $ case (numSuites, numRanks) of
-    -- Five different ranks
-    (x, 5) ->
-      let fiveHigh = ranks' == [14, 5, 4, 3, 2]
-          lastRank = last ranks'
-          inRng i = i >= lastRank && i <= lastRank + 4
-          -- Check if the ranks are sequential
-          isSeq = fiveHigh || all inRng ranks'
-       in -- Match number of suites
-          case () of
-            _
-              | isSeq && x == 1 -> StraightFlush ranks'
-              | x == 1 -> Flush ranks'
-              -- There's a test that says a 5-high straight
-              -- is the lowest-scoring straight
-              | isSeq && x > 1 && fiveHigh -> Straight [0 .. 4]
-              | isSeq && x > 1 -> Straight ranks'
-              | otherwise -> HighCard ranks'
-    -- Two different ranks
-    (_, 2) -> case rankGrpLen of
-      [4, 1] -> FourOfAKind ranks'
-      [3, 2] -> FullHouse ranks'
-      _ -> error "numRanks=2"
-    -- Three different ranks
-    (_, 3) -> case rankGrpLen of
-      [3, 1, 1] -> ThreeOfAKind ranks'
-      [2, 2, 1] -> TwoPair ranks'
-      _ -> error "numRanks=3"
-    -- Four different ranks
-    (_, 4) -> OnePair ranks'
-    (_, _) -> HighCard ranks'
-    where
-      {-
-      Sort ranks in desc order by the length of their groups,
-      and for equal-length groups, break tie using the key (rank).
-      A rank group consists of the suites for the same rank.
-      -}
-      sortedRanks = L.sortOn Down . map ((length . snd) &&& fst) . M.assocs
+pokerHand hand = flip fmap (rankMap hand) $ \ranks ->
+  {-
+   Sort ranks in desc order by the length of their groups,
+   and for equal-length groups, break tie using the key (rank).
+   A rank group consists of the suites for the same rank.
+  -}
+  let sortedRanks = L.sortOn Down . map ((length . snd) &&& fst) . M.assocs
       (rankGrpLen, ranks') = L.unzip $ sortedRanks ranks
       -- Count all the unique suites
       numSuites = S.size $ foldl S.union S.empty $ M.elems ranks
       numRanks = length ranks'
+   in case (numSuites, numRanks) of
+        -- Five different ranks
+        (x, 5) ->
+          let fiveHigh = ranks' == [14, 5, 4, 3, 2]
+              lastRank = last ranks'
+              inRng i = i >= lastRank && i <= lastRank + 4
+              -- Check if the ranks are sequential
+              isSeq = fiveHigh || all inRng ranks'
+           in -- Match number of suites
+              case () of
+                _
+                  | isSeq && x == 1 -> StraightFlush ranks'
+                  | x == 1 -> Flush ranks'
+                  -- There's a test that says a 5-high straight
+                  -- is the lowest-scoring straight
+                  | isSeq && x > 1 && fiveHigh -> Straight [0 .. 4]
+                  | isSeq && x > 1 -> Straight ranks'
+                  | otherwise -> HighCard ranks'
+        -- Two different ranks
+        (_, 2) -> case rankGrpLen of
+          [4, 1] -> FourOfAKind ranks'
+          [3, 2] -> FullHouse ranks'
+          _ -> error "numRanks=2"
+        -- Three different ranks
+        (_, 3) -> case rankGrpLen of
+          [3, 1, 1] -> ThreeOfAKind ranks'
+          [2, 2, 1] -> TwoPair ranks'
+          _ -> error "numRanks=3"
+        -- Four different ranks
+        (_, 4) -> OnePair ranks'
+        (_, _) -> HighCard ranks'
 
 -- Return a map of rank -> suites
 rankMap :: String -> Maybe (Map Int (Set Char))
@@ -89,9 +87,7 @@ rankMap = M.foldM insM M.empty . (map parse . words)
   where
     insM m = fmap (\(k, v) -> M.insertWith S.union k (S.singleton v) m)
 
-    parse xs
-      | validRank && validSuite = Just (rank, suite)
-      | otherwise = Nothing
+    parse xs = M.guard (validRank && validSuite) >> Just (rank, suite)
       where
         (r, s) = splitAt (length xs - 1) xs
         validSuite = suite `elem` ['S', 'H', 'D', 'C']

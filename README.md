@@ -65,13 +65,14 @@ stack ls dependencies
 ### Control Structures
 
 * [case](https://wiki.haskell.org/Case)
-* [Control structures](https://en.wikibooks.org/wiki/Haskell/Control_structures)
+* [Haskell/Control structures](https://en.wikibooks.org/wiki/Haskell/Control_structures)
 * [Let vs. Where](https://wiki.haskell.org/Let_vs._Where)
 * [case expression in a do block](https://stackoverflow.com/a/156050/839733)
 * [Some deep nested indentation](https://stackoverflow.com/q/47622491/839733)
 * [let with guards](https://stackoverflow.com/a/46888423/839733)
 * [case within let indentation](https://stackoverflow.com/a/33010779/839733)
 * [Guard within case](https://www.reddit.com/r/haskell/comments/bkn97b/use_variable_inside_case_of_in_haskell/)
+
 
 ### General
 
@@ -97,6 +98,10 @@ stack ls dependencies
 * [Lists vs Vectors vs Sequences](https://stackoverflow.com/a/9613203/839733)
 * [Donnacha Oisin Kidney](https://doisinkidney.com/)
 * [Carlo Hamalainen](https://carlo-hamalainen.net/)
+* [Advent of Haskell](https://medium.com/@mvaldesdeleon/advent-of-haskell-950d6408a729)
+* [Mutable State in Haskell](https://blog.jakuba.net/2014-07-20-mutable-state-in-haskell/)
+* [The vector package](https://www.schoolofhaskell.com/user/commercial/content/vector#boxed--storable-and-unboxed)
+* [Fast Sudoku Solver in Haskell](https://abhinavsarkar.net/posts/fast-sudoku-solver-in-haskell-1/)
 
 ### Monad
 
@@ -107,6 +112,12 @@ stack ls dependencies
 * [Note to self: reader monad transformer](https://carlo-hamalainen.net/2014/03/05/note-to-self-reader-monad-transformer/)
 * [A Simple Reader Monad Example](https://blog.ssanj.net/posts/2014-09-23-A-Simple-Reader-Monad-Example.html)
 * [ReaderT WriterT Monad Transformer Stack in Haskell](https://blog.ssanj.net/posts/2018-01-12-stacking-the-readert-writert-monad-transformer-stack-in-haskell.html)
+* [Monads in 15 minutes: Backtracking and Maybe](http://www.randomhacks.net/2007/03/12/monads-in-15-minutes/)
+* [Haskell/Understanding monads/State](https://en.wikibooks.org/wiki/Haskell/Understanding_monads/State)
+* [State Monad](https://wiki.haskell.org/State_Monad)
+* [Difference between State, ST, IORef, and MVar](https://stackoverflow.com/q/5545517/839733)
+* [Haskell: State and StateT examples](https://cstml.github.io/2021/07/22/State-Monad.html)
+* [Simple StateT use](https://wiki.haskell.org/Simple_StateT_use)
 
 ### Megaparsec
 

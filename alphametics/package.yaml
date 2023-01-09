@@ -1,0 +1,36 @@
+name: alphametics
+version: 1.3.0.6
+
+dependencies:
+  - base
+  - mtl
+  - vector
+  - containers
+  - criterion
+
+executables:
+  benchmark:
+    main: Main.hs
+    source-dirs: app
+    dependencies:
+    - alphametics
+
+library:
+  exposed-modules:
+  - Alphametics
+  - Alphametics2
+  source-dirs: src
+  ghc-options: -Wall
+  # dependencies:
+  # - mtl
+  # - vector
+  # - containers
+  # - criterion
+
+tests:
+  test:
+    main: Tests.hs
+    source-dirs: test
+    dependencies:
+      - alphametics
+      - hspec
