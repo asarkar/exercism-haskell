@@ -21,6 +21,7 @@ library
       base
     , containers
     , criterion
+    , extra
     , mtl
     , vector
   default-language: Haskell2010
@@ -36,6 +37,7 @@ executable benchmark
     , base
     , containers
     , criterion
+    , extra
     , mtl
     , vector
   default-language: Haskell2010
@@ -52,6 +54,7 @@ test-suite test
     , base
     , containers
     , criterion
+    , extra
     , hspec
     , mtl
     , vector

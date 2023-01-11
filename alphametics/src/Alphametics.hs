@@ -4,6 +4,7 @@
 module Alphametics (solve) where
 
 import qualified Control.Monad as M
+import qualified Control.Monad.Extra as E
 import Control.Monad.Reader (ReaderT)
 import qualified Control.Monad.Reader as R
 import Control.Monad.ST (ST)
@@ -113,8 +114,8 @@ canSolve row col carry = do
               | addend && assigned -> canSolve (row + 1) col (carry + i)
               | addend -> assignAny solution x unused
               | assigned ->
-                  (sumDigit == i)
-                    &&> canSolve 0 (col + 1) (carry `div` 10)
+                  pure (sumDigit == i)
+                    E.&&^ canSolve 0 (col + 1) (carry `div` 10)
               | sumDigit `elem` used -> return False
               | sumDigit == 0 && (not . canBeZero) letter -> return False
               | otherwise ->
@@ -126,16 +127,6 @@ canSolve row col carry = do
                     x
                     sumDigit
   where
-    -- https://www.reddit.com/r/haskell/comments/106f9el/comment/j3h57y1/
-    (&&>) :: Applicative m => Bool -> m Bool -> m Bool
-    (&&>) False = const $ pure False
-    (&&>) _ = id
-
-    -- (<&&) :: Functor m => m Bool -> Bool -> m Bool
-    -- mx <&& y = fmap (&& y) mx
-
-    -- (<&&>) :: Monad m => m Bool -> m Bool -> m Bool
-    -- mx <&&> my = mx >>= (&&> my)
     {-
     lift is needed because we're working in in a ReaderT monad,
     whereas VM.read and VM.write work in the ST monad

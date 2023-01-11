@@ -7,6 +7,7 @@ dependencies:
   - vector
   - containers
   - criterion
+  - extra
 
 executables:
   benchmark:
@@ -21,11 +22,6 @@ library:
   - Alphametics2
   source-dirs: src
   ghc-options: -Wall
-  # dependencies:
-  # - mtl
-  # - vector
-  # - containers
-  # - criterion
 
 tests:
   test:

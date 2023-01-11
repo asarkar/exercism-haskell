@@ -4,6 +4,7 @@
 module Alphametics2 (solve) where
 
 import qualified Control.Monad as M
+import qualified Control.Monad.Extra as E
 import Control.Monad.State ()
 import Control.Monad.State as MS
 import qualified Data.Char as C
@@ -76,8 +77,8 @@ canSolve row col carry = do
               | addend && assigned -> canSolve (row + 1) col (carry + i)
               | addend -> assignAny x unused
               | assigned ->
-                  (sumDigit == i)
-                    &&> canSolve 0 (col + 1) (carry `div` 10)
+                  pure (sumDigit == i)
+                    E.&&^ canSolve 0 (col + 1) (carry `div` 10)
               | sumDigit `elem` used -> return False
               | sumDigit == 0 && (not . canBeZero) letter -> return False
               | otherwise ->
@@ -88,9 +89,6 @@ canSolve row col carry = do
                     x
                     sumDigit
   where
-    (&&>) :: Applicative m => Bool -> m Bool -> m Bool
-    (&&>) False = const $ pure False
-    (&&>) _ = id
     ord c = C.ord c - C.ord 'A'
     assignAny _ [] = return False
     assignAny ix (i : xs) = do
