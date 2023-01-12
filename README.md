@@ -144,6 +144,14 @@ stack ls dependencies
 * [Haskell Projects](https://acm.wustl.edu/functional/projects.php)
 * [Ninety-Nine Haskell Problems](https://wiki.haskell.org/H-99:_Ninety-Nine_Haskell_Problems)
 
+### Testing
+
+* [QuickCheck: Type-directed Property Testing](https://cseweb.ucsd.edu/classes/wi14/cse230-a/lectures/lec-quickcheck.html)
+* [Property Testing using QuickCheck](https://www.dcc.fc.up.pt/~pbv/aulas/tapf/handouts/quickcheck.html)
+* [QuickCheck and Magic of Testing](https://www.fpcomplete.com/blog/2017/01/quickcheck/)
+* [The Design and Use of QuickCheck](https://begriffs.com/posts/2017-01-14-design-use-quickcheck.html)
+* [Write you some QuickCheck](https://blog.nikosbaxevanis.com/2016/02/08/write-you-some-quickcheck/)
+
 ## License
 
 Released under [Apache License v2.0](LICENSE).
