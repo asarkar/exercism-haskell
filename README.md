@@ -119,6 +119,8 @@ stack ls dependencies
 * [Difference between State, ST, IORef, and MVar](https://stackoverflow.com/q/5545517/839733)
 * [Haskell: State and StateT examples](https://cstml.github.io/2021/07/22/State-Monad.html)
 * [Simple StateT use](https://wiki.haskell.org/Simple_StateT_use)
+* [Adventures in Three Monads](__asset__/threemonads.pdf)
+* [Backtracking, Interleaving, and Terminating Monad Transformers](__asset__/LogicT.pdf)
 
 ### Megaparsec
 
