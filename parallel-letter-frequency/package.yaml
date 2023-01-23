@@ -1,0 +1,50 @@
+name: parallel-letter-frequency
+version: 0.1.0.4
+
+dependencies:
+  - base
+  - containers
+  - text
+  - parallel
+
+ghc-options:
+- -Wall
+# https://downloads.haskell.org/ghc/latest/docs/users_guide/using-optimisation.html#o-convenient-packages-of-optimisation-flags
+- -O2
+
+executables:
+  par-exec:
+    # https://downloads.haskell.org/ghc/latest/docs/users_guide/runtime_control.html#rts-eventlog
+    # https://downloads.haskell.org/ghc/latest/docs/users_guide/phases.html#options-linker
+    # https://downloads.haskell.org/ghc/latest/docs/users_guide/runtime_control.html#tracing
+    ghc-options: -threaded -eventlog -rtsopts "-with-rtsopts=-N -l -s"
+    main: Main.hs
+    source-dirs: app
+    dependencies:
+      - parallel-letter-frequency
+      - directory
+      - filepath
+
+library:
+  exposed-modules: Frequency
+  source-dirs: src
+  # dependencies:
+  # - foo       # List here the packages you
+  # - bar       # want to use in your solution.
+
+tests:
+  test:
+    main: Tests.hs
+    source-dirs: test
+    dependencies:
+      - parallel-letter-frequency
+      - hspec
+
+benchmarks:
+  bench:
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N
+    main: Benchmark.hs
+    source-dirs: bench
+    dependencies:
+      - parallel-letter-frequency
+      - criterion

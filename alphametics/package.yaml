@@ -6,15 +6,15 @@ dependencies:
   - mtl
   - vector
   - containers
-  - criterion
   - extra
 
-executables:
-  benchmark:
-    main: Main.hs
-    source-dirs: app
+benchmarks:
+  bench:
+    main: Benchmark.hs
+    source-dirs: bench
     dependencies:
     - alphametics
+    - criterion
 
 library:
   exposed-modules:

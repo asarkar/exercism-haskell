@@ -20,23 +20,6 @@ library
   build-depends:
       base
     , containers
-    , criterion
-    , extra
-    , mtl
-    , vector
-  default-language: Haskell2010
-
-executable benchmark
-  main-is: Main.hs
-  other-modules:
-      Paths_alphametics
-  hs-source-dirs:
-      app
-  build-depends:
-      alphametics
-    , base
-    , containers
-    , criterion
     , extra
     , mtl
     , vector
@@ -53,9 +36,25 @@ test-suite test
       alphametics
     , base
     , containers
-    , criterion
     , extra
     , hspec
+    , mtl
+    , vector
+  default-language: Haskell2010
+
+benchmark bench
+  type: exitcode-stdio-1.0
+  main-is: Benchmark.hs
+  other-modules:
+      Paths_alphametics
+  hs-source-dirs:
+      bench
+  build-depends:
+      alphametics
+    , base
+    , containers
+    , criterion
+    , extra
     , mtl
     , vector
   default-language: Haskell2010

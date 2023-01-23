@@ -2,7 +2,10 @@ import qualified Alphametics as A
 import qualified Alphametics2 as A2
 import Criterion.Main
 
--- execute with 'stack --resolver lts --work-dir . --stack-yaml alphametics/stack.yaml run'
+{-
+Execute with 'stack --resolver lts --work-dir . \
+--stack-yaml alphametics/stack.yaml bench'
+-}
 main :: IO ()
 main =
   defaultMain
