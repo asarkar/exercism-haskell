@@ -42,9 +42,14 @@ To run all matching tests:
 stack test --ta '-m <some_word>'
 ```
 
-To run a single test:
+To run exactly matching tests:
 ```
-stack test --ta '-m "/<test_name>/"'
+stack test --ta '-m "/<some_word>/"'
+```
+
+To run a _specific test_:
+```
+stack test --ta '-m "/allergies/no allergies at all/"'
 ```
 
 To view package list:
