@@ -5,8 +5,7 @@ module Alphametics2 (solve) where
 
 import qualified Control.Monad as M
 import qualified Control.Monad.Extra as E
-import Control.Monad.State ()
-import Control.Monad.State as MS
+import Control.Monad.Trans.State as MS
 import qualified Data.Char as C
 import qualified Data.List as L
 import Data.Set (Set)

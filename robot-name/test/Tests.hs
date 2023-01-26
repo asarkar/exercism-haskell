@@ -1,8 +1,8 @@
 {-# OPTIONS_GHC -fno-warn-type-defaults #-}
 
 import Control.Monad       (replicateM, unless)
-import Control.Monad.State (evalStateT)
-import Control.Monad.Trans (lift)
+import Control.Monad.Trans.State (evalStateT)
+import Control.Monad.Trans.Class (lift)
 import Data.Ix             (inRange)
 import Data.List           (group, intercalate, sort)
 import Test.Hspec          (Spec, expectationFailure, it, shouldBe, shouldNotBe, shouldSatisfy)

@@ -2,8 +2,9 @@ module Robot (Robot, initialState, mkRobot, resetName, robotName) where
 
 import qualified Control.Monad as M
 import qualified Control.Monad.IO.Class as MIC
-import Control.Monad.State (StateT)
-import qualified Control.Monad.State as MS
+import qualified Control.Monad.Trans.Class as TC
+import Control.Monad.Trans.State (StateT)
+import qualified Control.Monad.Trans.State as TS
 import Data.IORef (IORef)
 import qualified Data.IORef as IOR
 import Data.Set (Set)
@@ -19,14 +20,14 @@ initialState = RunState S.empty
 
 mkRobotName :: StateT RunState IO String
 mkRobotName = do
-  s <- MS.lift $ M.replicateM 2 $ R.randomRIO ('A', 'Z')
-  d <- MS.lift $ M.replicateM 3 $ R.randomRIO ('0', '9')
+  s <- TC.lift $ M.replicateM 2 $ R.randomRIO ('A', 'Z')
+  d <- TC.lift $ M.replicateM 3 $ R.randomRIO ('0', '9')
   let name = s ++ d
-  RunState existingNames <- MS.get
+  RunState existingNames <- TS.get
   if S.member name existingNames
     then mkRobotName
     else do
-      MS.put $ RunState $ S.insert name existingNames
+      TS.put $ RunState $ S.insert name existingNames
       return name
 
 mkRobot :: StateT RunState IO Robot

@@ -10,8 +10,7 @@ library:
   ghc-options: -Wall
   dependencies:
   - vector
-  # For Control.Monad.Reader
-  - mtl
+  - transformers
 
 tests:
   test:

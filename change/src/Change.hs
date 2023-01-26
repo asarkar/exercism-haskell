@@ -1,7 +1,7 @@
 module Change (findFewestCoins) where
 
-import Control.Monad.State (State)
-import qualified Control.Monad.State as S
+import Control.Monad.Trans.State (State)
+import qualified Control.Monad.Trans.State as S
 import qualified Data.Function as F
 import qualified Data.List as L
 import Data.Map (Map)

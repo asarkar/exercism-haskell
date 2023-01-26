@@ -10,7 +10,7 @@ library:
   ghc-options: -Wall
   dependencies:
   - containers
-  - mtl
+  - transformers
 
 tests:
   test:

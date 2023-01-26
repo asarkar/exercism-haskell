@@ -5,9 +5,10 @@ module Alphametics (solve) where
 
 import qualified Control.Monad as M
 import qualified Control.Monad.Extra as E
-import Control.Monad.Reader (ReaderT)
-import qualified Control.Monad.Reader as R
 import Control.Monad.ST (ST)
+import qualified Control.Monad.Trans.Class as TC
+import Control.Monad.Trans.Reader (ReaderT)
+import qualified Control.Monad.Trans.Reader as R
 import qualified Data.Char as C
 import qualified Data.List as L
 import Data.Set (Set)
@@ -131,7 +132,7 @@ canSolve row col carry = do
     lift is needed because we're working in in a ReaderT monad,
     whereas VM.read and VM.write work in the ST monad
     -}
-    readM solution = R.lift . UM.read solution
+    readM solution = TC.lift . UM.read solution
     ord c = C.ord c - C.ord 'A'
     assignAny _ _ [] = return False
     assignAny solution ix (i : xs) = do
