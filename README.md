@@ -20,6 +20,11 @@ GHCi> :set -package xyz
 GHCi> :m +XYZ.Module.You.Suddenly.Need
 ```
 
+To use a language extension
+```
+GHCi> :set -XOverloadedStrings
+```
+
 To show type of something
 ```
 GHCi> :t variable

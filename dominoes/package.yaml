@@ -1,0 +1,23 @@
+name: dominoes
+version: 2.1.0.9
+
+dependencies:
+  - base
+
+library:
+  exposed-modules: Dominoes
+  source-dirs: src
+  ghc-options: -Wall
+  dependencies:
+  - vector
+  - containers
+  - transformers
+  - extra
+
+tests:
+  test:
+    main: Tests.hs
+    source-dirs: test
+    dependencies:
+      - dominoes
+      - hspec

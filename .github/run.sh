@@ -4,8 +4,7 @@ set -e
 
 no_test=0
 no_lint=0
-stack_opts='--resolver lts --work-dir .'
-ghc_opts='-Wall -Werror'
+stack_opts='--resolver lts --verbosity warn --work-dir .'
 
 while (( $# > 0 )); do
    case "$1" in
@@ -57,7 +56,8 @@ for m in "${manifests[@]}"; do
 
 	if (( no_test == 0 )); then
 		# profiling https://stackoverflow.com/a/40922201/839733
-		stack $stack_opts --stack-yaml "$m" test --ghc-options="$ghc_opts"
+		stack test $stack_opts --stack-yaml "$m" \
+		  --ghc-options "-Wall -Werror"
 	fi
 
 	if (( no_lint == 0 )); then

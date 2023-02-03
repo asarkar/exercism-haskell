@@ -5,7 +5,8 @@ module Alphametics2 (solve) where
 
 import qualified Control.Monad as M
 import qualified Control.Monad.Extra as E
-import Control.Monad.Trans.State as MS
+import Control.Monad.Trans.State (State)
+import qualified Control.Monad.Trans.State as TS
 import qualified Data.Char as C
 import qualified Data.List as L
 import Data.Set (Set)
@@ -24,7 +25,7 @@ solve puzzle
       let result = (VU.fromList . reverse . head) res
       -- solution here is the Vector for letter-digit mapping
       let solution = VU.replicate 26 (-1)
-      MS.execState (canSolve 0 0 0) PuzzleState {..}
+      TS.execState (canSolve 0 0 0) PuzzleState {..}
   where
     xs = filter (all C.isAsciiUpper) $ words puzzle
     (eqn, res) = L.splitAt (length xs - 1) xs
@@ -47,7 +48,7 @@ data PuzzleState = PuzzleState
 
 canSolve :: Int -> Int -> Int -> State PuzzleState Bool
 canSolve row col carry = do
-  PuzzleState {equation, result, nonZeroLetters, solution} <- MS.get
+  PuzzleState {equation, result, nonZeroLetters, solution} <- TS.get
 
   let addend = row < V.length equation
   let word = if addend then equation V.! row else result
@@ -95,7 +96,7 @@ canSolve row col carry = do
       if success then return success else assignAny ix xs
     assign r c cr ix i = do
       -- canSolve is called with the modified state
-      success <- MS.withState (assign' ix i) (canSolve r c cr)
-      M.unless success (modify (assign' ix (-1)))
+      success <- TS.withState (assign' ix i) (canSolve r c cr)
+      M.unless success (TS.modify (assign' ix (-1)))
       return success
     assign' ix i p@PuzzleState {..} = p {solution = solution VU.// [(ix, i)]}
