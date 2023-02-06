@@ -30,6 +30,13 @@ To show type of something
 GHCi> :t variable
 ```
 
+Multiline input
+```
+GHCi> :{
+	...
+:}
+```
+
 To quit
 ```
 GHCi> :quit

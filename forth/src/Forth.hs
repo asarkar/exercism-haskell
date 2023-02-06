@@ -10,6 +10,7 @@ module Forth
 where
 
 import qualified BuiltIn as BI
+import qualified Control.Monad as M
 import qualified Data.Bifunctor as BF
 import qualified Data.Map as Map
 import Data.Text (Text)
@@ -27,19 +28,18 @@ emptyState :: ForthState
 emptyState = ForthState [] Map.empty 0
 
 evalText :: Text -> ForthState -> ForthResult
-evalText text st = case G.parseLine text of
-  Right items -> foldM' eval items st
-  Left _ -> Left InvalidWord
+evalText text = case G.parseLine text of
+  Right items -> foldM' eval items
+  Left _ -> const $ Left InvalidWord
 
 foldM' :: (a -> ForthState -> ForthResult) -> [a] -> ForthState -> ForthResult
-foldM' _ [] st = Right st
-foldM' f (x : xs) st = f x st >>= foldM' f xs
+foldM' _ [] = Right
+foldM' f (x : xs) = f x M.>=> foldM' f xs
 
 eval :: LineItem -> ForthState -> ForthResult
 eval item = case item of
   Cmd cmd -> runCmd cmd
   WordDefn w defn -> D.newDefn w defn
-  G.InvalidWord _ -> const $ Left InvalidWord
 
 runCmd :: Cmd -> ForthState -> ForthResult
 runCmd cmd = case cmd of

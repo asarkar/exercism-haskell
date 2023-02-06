@@ -49,7 +49,6 @@ Line = _{ SOI ~ LineItem+ ~ EOI }
 data LineItem
   = WordDefn AWord Text
   | Cmd Cmd
-  | InvalidWord Text
   deriving (Show)
 
 data Cmd = Word AWord | BuiltIn BuiltIn deriving (Show)
@@ -79,51 +78,41 @@ type Parser =
     -- The input stream type. We use `Text`.
     Text
 
-parseLine :: Text -> Either String [LineItem]
+parseLine :: Text -> Either Text [LineItem]
 -- Force parser to consume entire input
 -- <* Sequence actions, discarding the value of the second argument.
 parseLine txt = case M.parse (line <* M.eof) "" txt of
   -- :t err = M.ParseErrorBundle String Void
-  Left err -> Left $ M.errorBundlePretty err
+  Left err -> Left . T.pack $ M.errorBundlePretty err
   Right x -> Right x
 
-parseBuiltIn :: Text -> Either String BuiltIn
+parseBuiltIn :: Text -> Either Text BuiltIn
 parseBuiltIn txt = case M.parse (builtIn <* M.eof) "" txt of
-  Left err -> Left $ M.errorBundlePretty err
+  Left err -> Left . T.pack $ M.errorBundlePretty err
   Right x -> Right x
 
 line :: Parser [LineItem]
 line = lineItem `M.sepBy1` MC.space1
 
 lineItem :: Parser LineItem
-lineItem = wordDefn M.<|> (Cmd <$> cmd) M.<|> invalidWord
-  where
-    invalidWord = MC.char ':' >> (InvalidWord <$> defn)
+lineItem = wordDefn M.<|> (Cmd <$> cmd)
 
 wordDefn :: Parser LineItem
 wordDefn = M.between (lexeme $ MC.char ':') (MC.char ';') wd
   where
     wd = WordDefn <$> lexeme word <*> defn
-
-defn :: Parser Text
-defn = T.stripEnd <$> M.takeWhile1P (Just "defn") (/= ';')
+    defn = T.stripEnd <$> M.takeWhile1P (Just "defn") (/= ';')
 
 cmd :: Parser Cmd
 cmd = Word <$> word M.<|> BuiltIn <$> builtIn
 
 word :: Parser AWord
-word =
-  (Other <$> M.try hyphenatedWord)
-    M.<|> (BinOp <$> binOp)
-    M.<|> (Other <$> asciiAlpha)
+word = (BinOp <$> binOp) M.<|> (Other <$> asciiAlphaOrHyphen)
   where
-    asciiAlpha :: Parser Text
-    asciiAlpha =
+    asciiAlphaOrHyphen =
       M.takeWhile1P
-        (Just "asciiAlpha")
-        (\c -> C.isAsciiUpper c || C.isAsciiLower c)
-    rhs = T.cons <$> MC.char '-' <*> asciiAlpha
-    hyphenatedWord = T.concat <$> ((:) <$> asciiAlpha <*> M.some rhs)
+        (Just "asciiAlphaOrHyphen")
+        (\c -> C.isAsciiUpper c || C.isAsciiLower c || c == '-')
 
 builtIn :: Parser BuiltIn
 builtIn = anInt M.<|> aBinOp M.<|> aStackOp
