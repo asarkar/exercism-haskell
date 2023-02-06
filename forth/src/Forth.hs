@@ -29,12 +29,8 @@ emptyState = ForthState [] Map.empty 0
 
 evalText :: Text -> ForthState -> ForthResult
 evalText text = case G.parseLine text of
-  Right items -> foldM' eval items
+  Right items -> flip (M.foldM (flip eval)) items
   Left _ -> const $ Left InvalidWord
-
-foldM' :: (a -> ForthState -> ForthResult) -> [a] -> ForthState -> ForthResult
-foldM' _ [] = Right
-foldM' f (x : xs) = f x M.>=> foldM' f xs
 
 eval :: LineItem -> ForthState -> ForthResult
 eval item = case item of
@@ -51,8 +47,8 @@ runWord w st = case w of
   BinOp op -> fM $ T.pack $ show op
   Other txt -> fM txt
   where
-    fM txt = foldM' f (D.resolveWord txt st) st
-    f x st' = bi x >>= flip BI.runBuiltIn st'
+    fM txt = M.foldM f st (D.resolveWord txt st)
+    f st' x = bi x >>= flip BI.runBuiltIn st'
     bi txt = BF.first (const (UnknownWord txt)) (G.parseBuiltIn txt)
 
 toList :: ForthState -> [Int]
