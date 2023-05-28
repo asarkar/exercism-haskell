@@ -15,10 +15,14 @@ encode n xs = concatMap (map snd) zs
 
 decode :: Int -> String -> String
 decode _ [] = []
-decode n xs = head firstRail : zigzag (tail firstRail : otherRails)
+decode n xs = x : zigzag (zs : otherRails)
   where
     ys = rails n xs
-    (firstRail, otherRails) = (head A.&&& tail) ys
+    (firstRail, otherRails) = dehead ys
+    (x, zs) = dehead firstRail
+
+dehead :: [a] -> (a, [a])
+dehead = head A.&&& tail
 
 {-
 Generate a list of rail indices corresponding to each character
@@ -90,5 +94,5 @@ zigzag xs
   | otherwise = firstCol ++ zigzag zs
   where
     ys = L.dropWhileEnd null xs
-    (firstCol, rest) = L.unzip $ map (head A.&&& tail) (tail ys)
+    (firstCol, rest) = L.unzip $ map dehead (tail ys)
     zs = reverse $ head ys : rest

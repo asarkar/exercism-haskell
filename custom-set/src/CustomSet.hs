@@ -56,6 +56,20 @@ intersection :: (Ord a) => CustomSet a -> CustomSet a -> CustomSet a
 intersection setA = foldr (\x -> if member x setA then insert x else id) empty
 
 isDisjointFrom :: (Ord a) => CustomSet a -> CustomSet a -> Bool
+{-
+composition (.) is for functions of single arguments, but intersection
+takes two, so, (null .) . intersection
+
+If intersection required three arguments, then ((null .) .) . intersection
+
+Check at https://pointfree.io. It takes a lambda with all the arguments
+present, like \ a b c -> f (g a b c), and it produces ((f .) .) . g
+
+In general, when we need to compose a unary function 'f' with an n-ary 'g'
+function, add ( .) for each n around 'f'.
+
+https://www.reddit.com/r/haskell/comments/13u23yz/custom_set_implementation/
+-}
 isDisjointFrom = (null .) . intersection
 
 isSubsetOf :: (Ord a) => CustomSet a -> CustomSet a -> Bool
