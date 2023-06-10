@@ -1,28 +1,9 @@
 module Raindrops (convert) where
 
-import qualified Data.List as L
-
 convert :: Int -> String
 convert n
-  | null xs = show n
-  | otherwise = xs
+  | null ys = show n
+  | otherwise = concat ys
   where
-    xs = concatMap i2s $ factors n
-
-i2s :: Int -> String
-i2s 3 = "Pling"
-i2s 5 = "Plang"
-i2s 7 = "Plong"
-i2s _ = ""
-
--- search for the first divisor d in [2..sqrt(n)]
--- if d exists: return d : factors(n / d)
--- otherwise return n (since n is prime)
-factors :: Int -> [Int]
-factors = L.nub . go (2 : [3, 5 ..])
-  where
-    go [] n = [n]
-    go (p : ps) n
-      | p * p > n = [n]
-      | n `mod` p == 0 = p : go (p : ps) (n `div` p)
-      | otherwise = go ps n
+    xs = [(3, "Pling"), (5, "Plang"), (7, "Plong")]
+    ys = [y | (x, y) <- xs, n `mod` x == 0]
