@@ -48,6 +48,7 @@ gameTree :: Parser SgfTree
 gameTree = MC.char '(' *> tree <* MC.char ')'
   where
     -- the children are either another node, or a forest
+    -- https://www.hexwiki.net/index.php/Smart_Game_Format#Tree_structure
     tree = Node <$> node <*> (singleNodeTree A.<|> forest)
     singleNodeTree = (\x -> [Node x []]) <$> node
     forest = M.many gameTree
