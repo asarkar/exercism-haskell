@@ -29,7 +29,7 @@ executable par-exec
       Paths_parallel_letter_frequency
   hs-source-dirs:
       app
-  ghc-options: -Wall -O2 -threaded -eventlog -rtsopts "-with-rtsopts=-N -l -s"
+  ghc-options: -Wall -O2 -threaded -rtsopts "-with-rtsopts=-N -l -s"
   build-depends:
       base
     , containers
