@@ -22,10 +22,9 @@ normalize :: String -> String
 normalize = map C.toLower . filter C.isAlphaNum
 
 size :: Int -> Int
-size n = col
+size n = ceiling $ sqrt x
   where
     x = fromIntegral n :: Float
-    col = ceiling $ sqrt x
 
 padR :: Int -> String -> String
 padR n xs = xs ++ replicate (n - x) ' '

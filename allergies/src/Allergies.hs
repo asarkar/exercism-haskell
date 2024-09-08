@@ -22,4 +22,4 @@ allergies score = [allergens !! i | i <- [0 .. n], isAllergic i]
     isAllergic = B.testBit score
 
 isAllergicTo :: Allergen -> Int -> Bool
-isAllergicTo allergen score = allergen `elem` allergies score
+isAllergicTo = (. allergies) . elem

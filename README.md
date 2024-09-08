@@ -34,6 +34,11 @@ To use a language extension
 GHCi> :set -XOverloadedStrings
 ```
 
+To load a file
+```
+GHCi> :load path/to/file
+```
+
 To show type of something
 ```
 GHCi> :t variable
