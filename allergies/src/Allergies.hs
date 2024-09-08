@@ -2,9 +2,6 @@ module Allergies (Allergen (..), allergies, isAllergicTo) where
 
 import Data.Bits ((.&.))
 import qualified Data.Bits as B
-import Data.List ((!!))
-import qualified Data.List as L
-import qualified Data.Maybe as M
 
 data Allergen
   = Eggs
