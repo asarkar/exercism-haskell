@@ -16,7 +16,13 @@ jobs:
       - name: Test
         run: .github/run.sh --no-lint
 
-      - name: Lint
+      - name: 'Install HLint'
+        uses: haskell-actions/hlint-setup@v2
+
+      - name: 'Run HLint'
+        run: hlint --ignore-glob '*/test/*.hs' .
+
+      - name: 'Run Ormolu'
         uses: haskell-actions/run-ormolu@v16
         with:
-          pattern: '**/src/*.hs'
+          pattern: '*/src/*.hs'

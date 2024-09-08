@@ -1,5 +1,5 @@
-{-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE BangPatterns #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 import qualified Control.Concurrent as C
 import qualified Control.Monad as M
@@ -56,7 +56,7 @@ main = do
           readArg "--workers" args >>= R.readMaybe
   let file = Mb.fromMaybe "alice.txt" $ readArg "--file" args
   dataDir <- E.getExecutablePath >>= D.canonicalizePath >>= getDataDir
-  texts <- T.lines <$> (TIO.readFile $ dataDir FP.</> file)
+  texts <- T.lines <$> TIO.readFile (dataDir FP.</> file)
   putStrLn $
     "\nProcessing '"
       ++ file

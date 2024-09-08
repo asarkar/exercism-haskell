@@ -58,16 +58,16 @@ territories brd =
   if we launch from an already visited cell,
   we get an empty territory.
   -}
-  (filter (not . null . fst) . concatMap snd) $
+  concatMap (filter (not . null . fst) . snd) $
     scanl go (Set.empty, []) blanks
   where
     board = parseBoard brd
     n = rows board
     m = cols board
     blanks =
-      filter (isBlank board)
-        . concatMap (\r -> map (r,) [0 .. m - 1])
-        $ [0 .. n - 1]
+      concatMap
+        (filter (isBlank board) . (\r -> map (r,) [0 .. m - 1]))
+        [0 .. n - 1]
 
     {-
     we reuse the visited set to avoid exploring

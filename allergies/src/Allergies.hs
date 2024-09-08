@@ -1,6 +1,5 @@
 module Allergies (Allergen (..), allergies, isAllergicTo) where
 
-import Data.Bits ((.&.))
 import qualified Data.Bits as B
 
 data Allergen
@@ -14,12 +13,13 @@ data Allergen
   | Cats
   deriving (Show, Bounded, Enum, Eq)
 
+-- If the ith bit is set, allergic to the corresponding allergen
 allergies :: Int -> [Allergen]
-allergies score = map (allergens !!) ordinals
+allergies score = [allergens !! i | i <- [0 .. n], isAllergic i]
   where
     allergens = [minBound :: Allergen ..]
-    -- If the ith bit is set, the result is that 2^i (greater than 0)
-    ordinals = [i | i <- [0 .. length allergens - 1], score .&. (B.bit i) > 0]
+    n = length allergens - 1
+    isAllergic = B.testBit score
 
 isAllergicTo :: Allergen -> Int -> Bool
 isAllergicTo allergen score = allergen `elem` allergies score
