@@ -10,7 +10,7 @@ data Error a = InvalidInputBase | InvalidOutputBase | InvalidDigit a
 1. Convert to decimal using Horner's method (https://en.wikipedia.org/wiki/Horner%27s_method).
 2. Convert to the target base.
 -}
-rebase :: Integral a => a -> a -> [a] -> Either (Error a) [a]
+rebase :: (Integral a) => a -> a -> [a] -> Either (Error a) [a]
 rebase inputBase outputBase inputDigits
   | inputBase < 2 = Left InvalidInputBase
   | outputBase < 2 = Left InvalidOutputBase
@@ -22,7 +22,7 @@ rebase inputBase outputBase inputDigits
       | x > 0 = (Just . T.swap) $ divMod x outputBase
       | otherwise = Nothing
 
-decimal :: Integral a => a -> [a] -> Either (Error a) a
+decimal :: (Integral a) => a -> [a] -> Either (Error a) a
 decimal _ [] = Right 0
 decimal base (x : xs)
   | x < 0 || x >= base = Left $ InvalidDigit x

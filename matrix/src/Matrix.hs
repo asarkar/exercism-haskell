@@ -32,7 +32,7 @@ flatten (Matrix m) = V.foldl (V.++) V.empty m
 fromList :: [[a]] -> Matrix a
 fromList = Matrix . V.fromList . map V.fromList
 
-fromString :: Read a => String -> Matrix a
+fromString :: (Read a) => String -> Matrix a
 fromString = fromList . map (map read . words) . lines
 
 reshape :: (Int, Int) -> Matrix a -> Matrix a

@@ -41,9 +41,9 @@ solve puzzle
     nz = [head x | x <- xs, length x > 1]
     chr x = C.chr (C.ord 'A' + x)
     findSoln v = case [ (chr x, y)
-                        | x <- [0 .. 25],
-                          let y = v VU.! x,
-                          y >= 0
+                      | x <- [0 .. 25],
+                        let y = v VU.! x,
+                        y >= 0
                       ] of
       [] -> Nothing
       x -> Just x
