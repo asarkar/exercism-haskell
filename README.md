@@ -4,9 +4,18 @@ Feel free to open issues for questions, comments, or suggestions.
 
 [![](https://github.com/asarkar/exercism-haskell/workflows/CI/badge.svg)](https://github.com/asarkar/exercism-haskell/actions)
 
-For detailed explanations of solutions, see [exercism-rust](https://github.com/asarkar/exercism-rust).
-
 A curated list of [Haskell resources](https://blogs.asarkar.com/haskell-curated/) is available on my blog.
+
+## Installation
+
+https://stackoverflow.com/a/78961866/839733
+
+## Uninstallation
+```
+ghcup nuke
+rm -rf $HOME/.ghcup
+rm -rf $HOME/.stack
+```
 
 ## GHCi Commands
 To start with a package loaded
