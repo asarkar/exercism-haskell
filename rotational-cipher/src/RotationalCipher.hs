@@ -3,23 +3,14 @@ module RotationalCipher (rotate) where
 import qualified Data.Char as C
 
 rotate :: Int -> String -> String
-rotate key = map (C.chr . shift k)
+rotate key = map $ shift k
   where
-    k =
-      key `mod` numLetters
-        + ( if key < 0
-              then numLetters
-              else 0
-          )
+    k = key `mod` 26
 
-numLetters :: Int
-numLetters = 26
-
-shift :: Int -> Char -> Int
+shift :: Int -> Char -> Char
 shift k ch
-  | C.isAsciiUpper ch && x > C.ord 'Z' = x - numLetters
-  | C.isAsciiLower ch && x > C.ord 'z' = x - numLetters
-  | C.isAlpha ch = x
-  | otherwise = C.ord ch
+  | C.isAsciiUpper ch = C.chr $ go 'A'
+  | C.isAsciiLower ch = C.chr $ go 'a'
+  | otherwise = ch
   where
-    x = k + C.ord ch
+    go a = C.ord a + (C.ord ch + k - C.ord a) `mod` 26
