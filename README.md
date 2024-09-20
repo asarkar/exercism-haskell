@@ -4,7 +4,7 @@ Feel free to open issues for questions, comments, or suggestions.
 
 [![](https://github.com/asarkar/exercism-haskell/workflows/CI/badge.svg)](https://github.com/asarkar/exercism-haskell/actions)
 
-A curated list of [Haskell resources](https://blogs.asarkar.com/haskell-curated/) is available on my blog.
+A curated list of [Haskell resources](https://blogs.asarkar.com/technical/haskell-curated/) is available on my blog.
 
 ## Installation
 
@@ -59,6 +59,11 @@ GHCi> :quit
 
 ## Running tests
 
+All of the `stack test` commands must have the following options appended at the end:
+```
+--stack-yaml <project>/stack.yaml --resolver lts --verbosity warn --work-dir .
+```
+
 ```
 stack test
 ```
@@ -73,10 +78,7 @@ To run exactly matching tests:
 stack test --ta '-m "/<some_word>/"'
 ```
 
-To run a _specific test_:
-```
-stack test --ta '-m "/allergies/no allergies at all/"'
-```
+The name of a failing test is printed on the console, we can copy-paste from there.
 
 To view package list:
 ```
