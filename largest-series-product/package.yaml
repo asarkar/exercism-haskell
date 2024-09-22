@@ -8,8 +8,6 @@ library:
   exposed-modules: Series
   source-dirs: src
   ghc-options: -Wall
-  dependencies:
-  - vector
 
 tests:
   test:
