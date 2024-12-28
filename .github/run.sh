@@ -57,7 +57,7 @@ for m in "${manifests[@]}"; do
 	if (( no_test == 0 )); then
 		# profiling https://stackoverflow.com/a/40922201/839733
 		stack test $stack_opts --stack-yaml "$m" \
-		  --ghc-options "-Wall -Werror"
+		  --ghc-options "-Wall -Werror -Wno-x-partial"
 	fi
 
 	if (( no_lint == 0 )); then
