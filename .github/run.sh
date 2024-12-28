@@ -42,7 +42,7 @@ else
 fi
 
 ormolu_mode="check"
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if [[ -z "$CI" ]]; then
 	ormolu_mode="inplace"
 fi
 
