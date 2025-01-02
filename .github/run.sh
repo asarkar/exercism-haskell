@@ -46,13 +46,13 @@ if [[ -z "$CI" ]]; then
 	ormolu_mode="inplace"
 fi
 
-green='\033[1;32m'
-no_color='\033[0m'
+green=$(tput -Txterm-256color setaf 2)
+default=$(tput -Txterm-256color sgr0)
 for m in "${manifests[@]}"; do
 	name="$(dirname "$(readlink -f "$m")")"
 	name="$(basename "$name")"
 
-	printf "Project dir: %b%s%b\n" "$green" "$name" "$no_color"
+	printf "Project dir: %b%s%b\n" "$green" "$name" "$default"
 
 	if (( no_test == 0 )); then
 		# profiling https://stackoverflow.com/a/40922201/839733
@@ -64,13 +64,13 @@ for m in "${manifests[@]}"; do
 		if [[ -x "$(command -v hlint)" ]]; then
 			hlint "$name/src"
 		else
-			printf "hlint not found"
+			printf "%bhlint not found%b\n" "$red" "$default"
 		fi
 		
 		if [[ -x "$(command -v ormolu)" ]]; then
 			ormolu -m "$ormolu_mode" $(find "$name/src" -name '*.hs')
 		else
-			printf "ormolu not found"
+			printf "%bormolu not found%b\n" "$red" "$default"
 		fi
 	fi
 done

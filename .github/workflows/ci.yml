@@ -1,6 +1,6 @@
-on: [push]
-
 name: CI
+
+on: [push, workflow_dispatch]
 
 jobs:
   build-and-test:
@@ -12,10 +12,6 @@ jobs:
         uses: haskell-actions/setup@v2
         with:
           enable-stack: true
-          stack-no-global: true
-
-      - name: Test
-        run: .github/run.sh --no-lint
 
       - name: 'Install HLint'
         uses: haskell-actions/hlint-setup@v2
@@ -23,7 +19,11 @@ jobs:
       - name: 'Run HLint'
         run: hlint --ignore-glob '*/test/*.hs' .
 
-      - name: 'Run Ormolu'
+      - name: 'Check Formatting'
         uses: haskell-actions/run-ormolu@v16
         with:
           pattern: '*/src/*.hs'
+          mode: check
+
+      - name: 'Test and Lint'
+        run: .github/run.sh --no-lint
