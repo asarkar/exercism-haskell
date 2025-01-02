@@ -46,8 +46,10 @@ if [[ -z "$CI" ]]; then
 	ormolu_mode="inplace"
 fi
 
-green=$(tput -Txterm-256color setaf 2)
-default=$(tput -Txterm-256color sgr0)
+trm="xterm-256color"
+red=$(tput -T"$trm" setaf 1)
+green=$(tput -T"$trm" setaf 2)
+default=$(tput -T"$trm" sgr0)
 for m in "${manifests[@]}"; do
 	name="$(dirname "$(readlink -f "$m")")"
 	name="$(basename "$name")"
